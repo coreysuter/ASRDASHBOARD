@@ -1,7 +1,42 @@
-const DATA = JSON.parse(document.getElementById('data').textContent);
+let DATA = null;
+window.DATA = null;
 
+async function loadData(){
+  // Prefer embedded <script id="data" type="application/json">
+  const el = document.getElementById('data');
+  if(el && el.textContent && el.textContent.trim().length>0){
+    try{
+      DATA = JSON.parse(el.textContent);
+      window.DATA = DATA;
+      return DATA;
+    }catch(e){
+      console.warn('Failed to parse embedded data; will try fetching data.json', e);
+    }
+  }
 
-window.DATA = DATA;
+  // Fallback: fetch data.json (works on GitHub Pages / any http server)
+  try{
+    const res = await fetch('data.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const txt = await res.text();
+    // Keep a copy in #data so existing code paths still work
+    let node = document.getElementById('data');
+    if(!node){
+      node = document.createElement('script');
+      node.id = 'data';
+      node.type = 'application/json';
+      document.body.appendChild(node);
+    }
+    node.textContent = txt;
+    DATA = JSON.parse(txt);
+    window.DATA = DATA;
+    return DATA;
+  }catch(e){
+    console.error('Could not load data.json. If you are opening via file://, run a local server.', e);
+    throw e;
+  }
+}
+
 
 function renderMenuTechLists(){
   try{
@@ -2713,10 +2748,36 @@ document.addEventListener("click",(e)=>{
   }
 });
 
-window.addEventListener('hashchange', safeRouter);
-populateAsrMenuLinks();
-initTechSearchModal();
-try { safeRouter(); }
-catch(e){
-  document.getElementById('app').innerHTML = '<div class="panel"><div class="phead"><div class="h2">Dashboard error</div><div class="sub">Send a screenshot of this error.</div></div><div class="list"><pre style="white-space:pre-wrap;color:var(--muted)">'+safe(e.stack||String(e))+'</pre></div></div>';
+function bootApp(){
+  // Requires DATA loaded
+  populateAsrMenuLinks();
+  initTechSearchModal();
+  window.addEventListener('hashchange', safeRouter);
+
+  try {
+    safeRouter();
+  }catch(e){
+    const app = document.getElementById('app');
+    if(app){
+      app.innerHTML = '<div class="panel"><div class="phead"><div class="h2">Dashboard error</div><div class="sub">Send a screenshot of this error.</div></div><div class="list"><pre style="white-space:pre-wrap;color:var(--muted)">'+safe((e&&e.stack)||String(e))+'</pre></div></div>';
+    }
+  }
+}
+
+async function boot(){
+  try{
+    await loadData();
+    bootApp();
+  }catch(e){
+    const app = document.getElementById('app');
+    if(app){
+      app.innerHTML = '<div class="panel"><div class="phead"><div class="h2">Data load error</div><div class="sub">Could not load data.json. If you are running this from GitHub Pages, check that data.json exists in the repo root. If you opened index.html directly, run a local server (python -m http.server).</div></div><div class="list"><pre style="white-space:pre-wrap;color:var(--muted)">'+safe((e&&e.stack)||String(e))+'</pre></div></div>';
+    }
+  }
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', boot);
+}else{
+  boot();
 }
