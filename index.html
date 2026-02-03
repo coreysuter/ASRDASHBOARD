@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!-- saved from url=(0094)file:///C:/Users/CoreySuter/Downloads/tech_dashboard_desktop_v189_requested_updates%20(1).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Technician Dashboard - v282_UNIQUE</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <div class="titleRow"><label for="menuToggle" class="hamburger" aria-label="Open menu" title="Menu">☰</label><h1>Technician Performance Dashboard</h1></div>
+      <div class="sub">Generated: <b>2026-01-27</b></div>
+    </div>
+    <div style="margin-left:auto"><img class="brandLogo" alt="Kalidy Kia" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAACAAAAAI2CAYAAADE9GjOAABZGklEQVR42u3daVcbSZYw4OtyTU8PUmphM+CVfv//T5rGK2A2rdDTXVX2+wGnSAntCJBCz3NOHUCAyw5l5o2IeyPixc+fP38GAAAAAAAAALDSftMEAAAAAAAAALD6+goAyvXDvv+GvT7qNR999NFHH3300UcfffTRRx999NFHH3300UcfffTRRx999NFHH330cb6Pw/Lyw4z72RfFIwAm/UEAAAAAAAAAwHLpNo4iorADgOQ/AAAAAAAAAKyu3zQBAAAAAAAAAKymfPV/hAIAAAAAAAAAAFhZxd3+ewUAxaoAAAAAAAAAAGC19AoAilUBAAAAAAAAAMDycwQAAAAAAAAAACRg6BEAAAAAAAAAAMDqUgAAAAAAAAAAAAnoFQAUzwUAAAAAAAAAAFaLHQAAAAAAAAAAIAG9AoBy/VBrAAAAAAAAAMCKsgMAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAAAAAAJEABAAAAAAAAAAAkQAEAAAAAAAAAACRAAQAAAAAA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AAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAAASoAAAAAAAAAAAABKgAAAAAAAAAAAAEqAAAAAAAAAAAABWVLdx1PtcAQAAAAAAAAAAJKBXAFCsCgAAAAAAAAAAVsuLnz9//tQMAAAAAAAAALDa/j+alyoFYjox2wAAAABJRU5ErkJggg=="></div>
+  </div>
+
+  
+  <input type="checkbox" id="menuToggle" class="menuToggle">
+  <div id="sideMenu" class="sideMenu" aria-hidden="true">
+    <div class="menuHdr">
+      <div class="menuTitle"></div>
+      <label for="menuToggle" class="menuClose" aria-label="Close menu" title="Close">✕</label>
+    </div>
+
+    <a class="menuLink topLink" href="#/">Technician Dashboard</a>
+
+<details class="menuGroup" open="">
+      <summary><span class="mIcon">🔧</span>Technicians</summary>
+      <details class="menuSub" open="">
+        <summary>Express</summary>
+        <div id="menuTechListExpress"></div>
+      </details>
+
+      <details class="menuSub">
+        <summary>Kia</summary>
+        <div id="menuTechListKia"></div>
+      </details>
+    </details><details class="menuGroup" open="">
+      <summary><span class="mIcon asrIcon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" class="asrSvg"><path d="M12 3 L22 21 H2 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><line x1="12" y1="9" x2="12" y2="14" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></line><circle cx="12" cy="17" r="1.2" fill="#ffffff"></circle></svg></span>Services</summary>
+<div id="asrMenuLinks"></div>
+    </details>
+
+
+    <details class="menuGroup">
+      <summary><span class="mIcon">⚙️</span>Settings</summary>
+      <a class="menuLink" href="#/settings/goals">Goals</a>
+    </details>
+
+    
+  </div>
+  <label for="menuToggle" id="menuScrim" class="menuScrim" aria-hidden="true"></label>
+<div id="app" style="display:grid;gap:12px;margin-top:12px"><div class="teamsGrid">
+    <div class="panel techHeaderPanel">
+      <div class="phead">
+        <div class="titleRow">
+          <div>
+            <div class="h2 teamTitle">EXPRESS</div>
+            <div class="sub"></div>
+          </div>
+          <div class="teamStat">
+            <div class="num">3.3</div>
+            <div class="lbl">Avg ASR/RO (Summary)</div>
+          </div>
+        </div>
+
+        <div class="pills">
+          <div class="pill"><div class="k">Avg ROs</div><div class="v">79</div></div>
+          <div class="pill"><div class="k">Avg ODO</div><div class="v">43,550</div></div>
+          <div class="pill"><div class="k">Total ASR</div><div class="v">263</div></div>
+          <div class="pill"><div class="k">Sold %</div><div class="v">14.4%</div></div>
+        </div>
+        <div class="iconBar">
+          <button class="iconBtn" onclick="toggleTeamFilters(&#39;EXPRESS&#39;)" aria-label="Filters" title="Filters"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18l-7 8v5l-4 2v-7L3 5z"></path></svg></button>
+          <div class="appliedInline"><span class="filtersText"><i>Filters: With Fluids (Total), Focus: ASR/RO</i></span></div>
+          <button class="iconBtn pushRight" onclick="openTechSearch()" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 4a6 6 0 104.47 10.03l4.25 4.25 1.41-1.41-4.25-4.25A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"></path></svg></button>
+        </div>
+
+        <div class="ctlPanel ">
+          <div class="controls">
+            <div>
+              <label>Filter</label>
+              <select data-team="EXPRESS" data-ctl="filter">
+                <option value="total" selected="">With Fluids (Total)</option>
+                <option value="without_fluids">Without Fluids</option>
+                <option value="fluids_only">Fluids Only</option>
+              </select>
+            </div>
+            <div>
+              <label>Focus</label>
+              <select data-team="EXPRESS" data-ctl="sort">
+                <option value="asr_per_ro" selected="">ASR/RO (default)</option>
+                <option value="sold_pct">Sold%</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="list">
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/duong-troung" style="text-decoration:none;color:inherit" onclick="return goTech(" duong-troung")"="">Duong Troung</a>
+            </div>
+            <div class="rankUnder">1 of 5<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">75</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">47,101</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">336</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">56</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">4.5</div></div>
+        </div>
+      </div>
+    
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/christian-johnson" style="text-decoration:none;color:inherit" onclick="return goTech(" christian-johnson")"="">Christian Johnson</a>
+            </div>
+            <div class="rankUnder">2 of 5<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">78</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">45,246</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">277</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">28</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">3.6</div></div>
+        </div>
+      </div>
+    
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/john-ginter" style="text-decoration:none;color:inherit" onclick="return goTech(" john-ginter")"="">John Ginter</a>
+            </div>
+            <div class="rankUnder">3 of 5<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">27</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">45,774</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">85</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">10</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">3.1</div></div>
+        </div>
+      </div>
+    
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/morgan-volpicella" style="text-decoration:none;color:inherit" onclick="return goTech(" morgan-volpicella")"="">Morgan Volpicella</a>
+            </div>
+            <div class="rankUnder">4 of 5<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">152</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">40,310</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">476</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">81</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">3.1</div></div>
+        </div>
+      </div>
+    
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/alexander-gourley" style="text-decoration:none;color:inherit" onclick="return goTech(" alexander-gourley")"="">Alexander Gourley</a>
+            </div>
+            <div class="rankUnder">5 of 5<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">62</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">39,318</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">139</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">23</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">2.2</div></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  
+    <div class="panel techHeaderPanel">
+      <div class="phead">
+        <div class="titleRow">
+          <div>
+            <div class="h2 teamTitle">KIA</div>
+            <div class="sub"></div>
+          </div>
+          <div class="teamStat">
+            <div class="num">2.3</div>
+            <div class="lbl">Avg ASR/RO (Summary)</div>
+          </div>
+        </div>
+
+        <div class="pills">
+          <div class="pill"><div class="k">Avg ROs</div><div class="v">24</div></div>
+          <div class="pill"><div class="k">Avg ODO</div><div class="v">63,243</div></div>
+          <div class="pill"><div class="k">Total ASR</div><div class="v">54</div></div>
+          <div class="pill"><div class="k">Sold %</div><div class="v">19.4%</div></div>
+        </div>
+        <div class="iconBar">
+          <button class="iconBtn" onclick="toggleTeamFilters(&#39;KIA&#39;)" aria-label="Filters" title="Filters"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18l-7 8v5l-4 2v-7L3 5z"></path></svg></button>
+          <div class="appliedInline"><span class="filtersText"><i>Filters: With Fluids (Total), Focus: ASR/RO</i></span></div>
+          <button class="iconBtn pushRight" onclick="openTechSearch()" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 4a6 6 0 104.47 10.03l4.25 4.25 1.41-1.41-4.25-4.25A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"></path></svg></button>
+        </div>
+
+        <div class="ctlPanel ">
+          <div class="controls">
+            <div>
+              <label>Filter</label>
+              <select data-team="KIA" data-ctl="filter">
+                <option value="total" selected="">With Fluids (Total)</option>
+                <option value="without_fluids">Without Fluids</option>
+                <option value="fluids_only">Fluids Only</option>
+              </select>
+            </div>
+            <div>
+              <label>Focus</label>
+              <select data-team="KIA" data-ctl="sort">
+                <option value="asr_per_ro" selected="">ASR/RO (default)</option>
+                <option value="sold_pct">Sold%</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="list">
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/marcus-frazier" style="text-decoration:none;color:inherit" onclick="return goTech(" marcus-frazier")"="">Marcus Frazier</a>
+            </div>
+            <div class="rankUnder">1 of 7<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">16</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">55,652</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">59</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">2</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">3.7</div></div>
+        </div>
+      </div>
+    
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/luis-rivas" style="text-decoration:none;color:inherit" onclick="return goTech(" luis-rivas")"="">Luis Rivas</a>
+            </div>
+            <div class="rankUnder">2 of 7<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">20</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">76,274</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">63</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">3</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">3.1</div></div>
+        </div>
+      </div>
+    
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/dan-womack" style="text-decoration:none;color:inherit" onclick="return goTech(" dan-womack")"="">Dan Womack</a>
+            </div>
+            <div class="rankUnder">3 of 7<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">30</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">78,437</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">91</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">9</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">3.0</div></div>
+        </div>
+      </div>
+    
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/luis-bondi" style="text-decoration:none;color:inherit" onclick="return goTech(" luis-bondi")"="">Luis Bondi</a>
+            </div>
+            <div class="rankUnder">4 of 7<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">32</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">71,346</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">59</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">17</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">1.8</div></div>
+        </div>
+      </div>
+    
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/rocco-statsmann" style="text-decoration:none;color:inherit" onclick="return goTech(" rocco-statsmann")"="">Rocco Statsmann</a>
+            </div>
+            <div class="rankUnder">5 of 7<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">4</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">60,438</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">7</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">5</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">1.8</div></div>
+        </div>
+      </div>
+    
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/hank-beard" style="text-decoration:none;color:inherit" onclick="return goTech(" hank-beard")"="">Hank Beard</a>
+            </div>
+            <div class="rankUnder">6 of 7<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">44</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">49,664</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">71</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">5</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">1.6</div></div>
+        </div>
+      </div>
+    
+      <div class="techRow">
+        <div class="techMeta" style="align-items:flex-start">
+          <div class="techMetaLeft">
+            <div class="val name" style="font-size:16px">
+              <a href="#/tech/caleb-walley" style="text-decoration:none;color:inherit" onclick="return goTech(" caleb-walley")"="">Caleb Walley</a>
+            </div>
+            <div class="rankUnder">7 of 7<div class="byAsr">ASR/RO</div></div>
+          </div>
+
+        </div>
+
+        <div class="techTiles">
+          <div class="techTile tE"><div class="tLbl">ROs</div><div class="tVal">19</div></div>
+          <div class="techTile tA"><div class="tLbl">Avg ODO</div><div class="tVal">50,894</div></div>
+          <div class="techTile tC"><div class="tLbl">Total ASR</div><div class="tVal">28</div></div>
+          <div class="techTile tB"><div class="tLbl">Sold</div><div class="tVal">3</div></div>
+          <div class="techTile tD"><div class="tLbl">ASR/RO</div><div class="tVal">1.5</div></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div></div>
+
+  
+<div id="techSearchModal" class="modal" role="dialog" aria-modal="true" aria-label="Technician search">
+  <div class="modalCard">
+    <div class="modalHdr">
+      <div class="modalTitle">Technician Search</div>
+      <button class="iconBtn" onclick="closeTechSearch()" aria-label="Close search" title="Close">✕</button>
+    </div>
+    <input id="techSearchInput" type="text" placeholder="Type a technician name..." autocomplete="off">
+    <div id="techSearchResults" class="modalList"></div>
+  </div>
+</div>
+
+<div class="footer">If you see blank, open this file directly in Chrome/Safari (not inside another app).</div>
+</div>
+
+
+
+
+
+
+<div id="buildWatermark">BUILD v282_UNIQUE</div>
+
+<script>
+(async function(){
+  try{
+    const res = await fetch('data.json');
+    const txt = await res.text();
+    let el = document.getElementById('data');
+    if(!el){
+      el = document.createElement('script');
+      el.id = 'data';
+      el.type = 'application/json';
+      document.body.appendChild(el);
+    }
+    el.textContent = txt;
+  }catch(e){
+    console.warn('Could not load data.json. If opening via file://, use a local server.', e);
+  }
+})();
+</script>
+<script src="app.js"></script>
+
+</body></html>
