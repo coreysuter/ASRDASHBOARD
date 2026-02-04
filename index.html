@@ -412,11 +412,44 @@
 <div id="buildWatermark">BUILD v282_UNIQUE</div>
 
   <script>
-    (async function () {
-      // fetch data.json, fill #data
-      // then dynamically inject app.js
-    })();
-  </script>
+(async function(){
+  const v = Date.now(); // cache buster for GitHub Pages / browsers
+  try{
+    const res = await fetch('./data.json?v=' + v, { cache: 'no-store' });
+    if(!res.ok) throw new Error('data.json HTTP ' + res.status);
+    const txt = await res.text();
+
+    let el = document.getElementById('data');
+    if(!el){
+      el = document.createElement('script');
+      el.id = 'data';
+      el.type = 'application/json';
+      document.body.appendChild(el);
+    }
+    el.textContent = txt;
+
+    const s = document.createElement('script');
+    s.src = './app.js?v=' + v;   // cache bust app.js too
+    s.defer = true;
+    document.body.appendChild(s);
+
+  }catch(e){
+    console.error(e);
+    const app = document.getElementById('app');
+    if(app){
+      app.innerHTML = `
+        <div style="padding:16px;font-family:system-ui;color:#fff">
+          <h2 style="margin:0 0 8px 0">Site Error</h2>
+          <div style="opacity:.8;margin-bottom:10px">
+            data.json or app.js failed to load. See details below.
+          </div>
+          <pre style="white-space:pre-wrap;opacity:.8">${(e && (e.stack||e.message)) || String(e)}</pre>
+        </div>
+      `;
+    }
+  }
+})();
+</script>
 
 </body>
 </html>
