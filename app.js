@@ -775,7 +775,12 @@ const tfOpen = !!UI.techFilters[techId];
   const focusVal = focus==="sold" ? fmtPct(techSoldPct(t, filterKey)) : (focus==="goal" ? fmtPct(techGoalScore(t)) : fmt1(techAsrPerRo(t, filterKey),1));
 
   
-const header = `
+const asrExt = buildSvcExtremes("asr");
+  const soldExt = buildSvcExtremes("sold");
+
+  const header = `
+    <div class="techHeaderGrid">
+
     <div class="panel techHeaderPanel">
       <div class="phead">
         <div class="titleRow techTitleRow">
@@ -802,11 +807,108 @@ const header = `
         ${filters}
       </div>
     </div>
+  
+      <div class="panel techQuickPanel" aria-label="Top and bottom services">
+        <div class="phead">
+          <div class="quickTitleRow">
+            <div class="quickTitle">ASR</div>
+            <div class="quickTitle">SOLD</div>
+          </div>
+          <div class="quickInnerGrid">
+            <div class="quickDarkBox">
+              <div class="quickSectionTitle">Top 3 Most Recommended</div>
+              <div class="quickList">
+                ${asrExt.topHtml || `<div class="quickEmpty">—</div>`}
+              </div>
+              <div class="quickSectionTitle mid">Bottom 3 Least Recommended</div>
+              <div class="quickList">
+                ${asrExt.botHtml || `<div class="quickEmpty">—</div>`}
+              </div>
+            </div>
+            <div class="quickDarkBox">
+              <div class="quickSectionTitle">Top 3 Most Sold</div>
+              <div class="quickList">
+                ${soldExt.topHtml || `<div class="quickEmpty">—</div>`}
+              </div>
+              <div class="quickSectionTitle mid">Bottom 3 Least Sold</div>
+              <div class="quickList">
+                ${soldExt.botHtml || `<div class="quickEmpty">—</div>`}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   `;
+`;
 
   function fmtDelta(val){ return val===null || val===undefined || !Number.isFinite(Number(val)) ? "—" : (Number(val)*100).toFixed(1); }
 
-  function renderCategoryRectSafe(cat, compareBasis){
+  
+  // ---- Service anchor helpers (for Top/Bottom lists) ----
+  function slug(s){
+    return String(s||"").toLowerCase().trim()
+      .replace(/\s+/g," ")
+      .replace(/[^a-z0-9]+/g,"-")
+      .replace(/^-+|-+$/g,"");
+  }
+  const svcId = (cat)=>`svc-${slug(cat)}`;
+
+  function scrollToServiceAnchor(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.scrollIntoView({behavior:"smooth", block:"start"});
+    el.classList.add("jumpHi");
+    setTimeout(()=>el.classList.remove("jumpHi"), 1400);
+  }
+
+  function buildSvcExtremes(kind){
+    // kind: "asr" | "sold"
+    const rows = [];
+    for(const cat of CAT_LIST){
+      const c = (t.categories||{})[cat] || {};
+      const asr = Number(c.asr)||0;
+      const sold = Number(c.sold)||0;
+      const req = Number(c.req);
+      const close = Number(c.close);
+      rows.push({
+        cat,
+        label: catLabel(cat),
+        asr, sold,
+        req: Number.isFinite(req)?req:null,
+        close: Number.isFinite(close)?close:null,
+        id: svcId(cat)
+      });
+    }
+    const key = (kind==="sold") ? "sold" : "asr";
+    const top = rows.slice().sort((a,b)=> (b[key]-a[key]) || ((b.req||0)-(a.req||0))).slice(0,3);
+    const bot = rows.slice().sort((a,b)=> (a[key]-b[key]) || ((a.req||0)-(b.req||0))).slice(0,3);
+
+    function pct(v){ return (Number.isFinite(v)? Math.round(v*100):0); }
+    function rightText(r){
+      if(kind==="sold"){
+        return `Sold ${fmtInt(r.sold)} • ${fmtPctPlain(r.close)}`;
+      }
+      return `ASR ${fmtInt(r.asr)} • ${fmtPctPlain(r.req)}`;
+    }
+    function rowHtml(r, idx){
+      return `
+        <div class="svcRankRow techRow">
+          <div class="techRowLeft">
+            <span class="rankNum">${idx+1}.</span>
+            <a href="javascript:void(0)" onclick="scrollToServiceAnchor(${JSON.stringify(r.id)});return false;">${safe(r.label)}</a>
+          </div>
+          <span class="mini">${rightText(r)}</span>
+        </div>
+      `;
+    }
+    return {
+      topHtml: top.map((r,i)=>rowHtml(r,i)).join(""),
+      botHtml: bot.map((r,i)=>rowHtml(r,i)).join(""),
+    };
+  }
+
+function renderCategoryRectSafe(cat, compareBasis){
     const c = (t.categories && t.categories[cat]) ? t.categories[cat] : {};
     const asrCount = Number(c.asr ?? 0);
     const soldCount = Number(c.sold ?? 0);
@@ -955,7 +1057,7 @@ const soldBlock = `
     `;
 
 return `
-      <div class="catCard">
+      <div class="catCard" id="${svcId(cat)}">
         <div class="catHeader">
           <div class="svcGaugeWrap" style="--sz:72px">${Number.isFinite(hdrPct)? svcGauge(hdrPct, (focus==="sold"?"Sold%":(focus==="goal"?"Goal%":"ASR%"))) : ""}</div>
 <div>
@@ -1111,53 +1213,6 @@ const GROUPS = (() => {
 
 // Populate hamburger menu "ASR Categories" from DATA.sections (so it always includes every category).
 
-function renderCategoryRectSafe(cat, compareBasis){
-  try{
-    return renderCategoryRectSafe(cat, compareBasis);
-  }catch(e){
-    console.error('renderCategoryRect error', cat, e);
-    const eh = (s)=>String(s==null?'':s).replace(/[&<>"]/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-    const msg = eh(e && e.message ? e.message : String(e));
-    const catName = eh(cat || 'Service');
-    return `
-      <div class="card serviceCard" style="border:1px solid rgba(255,255,255,.08)">
-        <div class="svcHead" style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-          <div class="svcName">${catName}</div>
-          <div class="pill" style="opacity:.65">Error</div>
-        </div>
-        <div style="padding:12px 12px 14px;color:#fca5a5;font-size:12px;line-height:1.3">
-          Service tile failed to render: <span style="color:#fee2e2">${msg}</span>
-        </div>
-      </div>
-    `;
-  }
-}
-
-
-function populateAsrMenuLinks(){
-  const host = document.getElementById("asrMenuLinks");
-  if(!host) return;
-  const secs = Array.isArray(DATA.sections) ? DATA.sections : [];
-  const links = [];
-  for(const sec of secs){
-    const name = String(sec?.name || "").trim();
-    if(!name) continue;
-    const key = name.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
-    links.push(`<a class="menuLink" href="#/group/${encodeURIComponent(key)}">${safe(name)}</a>`);
-  }
-  host.innerHTML = links.join("");
-}
-
-// Lazily computed caches (DATA-based; no dependency on tech page helpers)
-let __ALL_TECHS = null;
-function getAllTechsCached(){
-  if(__ALL_TECHS) return __ALL_TECHS;
-  const techs = (typeof DATA!=='undefined' && Array.isArray(DATA.techs)) ? DATA.techs : [];
-  // Only Express + Kia are in this project
-  __ALL_TECHS = techs.filter(t => (t.team==="EXPRESS" || t.team==="KIA"));
-  return __ALL_TECHS;
-}
-let __ALL_CATS = null;
 function getAllCategoriesSet(){
   if(__ALL_CATS) return __ALL_CATS;
   const set = new Set();

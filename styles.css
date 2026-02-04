@@ -746,7 +746,33 @@ body.route-tech .techHeaderPanel{display:block;width:50%;max-width:50%;min-width
   border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:var(--text);cursor:pointer;
   font-size:22px;line-height:1}
 .brandLogoMini{display:none !important;}
-.techNameWrap{flex:1 1 auto;min-width:0}
+.techNameWrap{flex:1 1 0;min-width:0}
+.techQuickBox{flex:1 1 0;min-width:0;border:1px solid var(--border);border-radius:16px;padding:10px;background:rgba(0,0,0,.18)}
+.quickGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quickCol{border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:10px;background:rgba(255,255,255,.03);min-width:0}
+.quickHdr{font-size:12px;color:var(--muted);font-weight:1000;letter-spacing:.35px;text-transform:uppercase;margin-bottom:8px}
+.quickLbl{font-size:10px;color:var(--muted);font-weight:1000;letter-spacing:.35px;text-transform:uppercase;margin:6px 0}
+.quickList{display:flex;flex-direction:column;gap:6px}
+.quickEmpty{font-size:12px;color:var(--muted);opacity:.8}
+.svcJump{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.22);color:var(--text);cursor:pointer;text-align:left}
+.svcJump:hover{background:rgba(0,0,0,.30)}
+.svcJump:active{transform:translateY(1px)}
+.svcName{font-weight:1000;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.svcNums{font-size:12px;font-weight:1000;color:rgba(255,255,255,.90);white-space:nowrap}
+
+/* In-page jump highlight */
+.catCard.flash{animation:flashRing 1.2s ease}
+@keyframes flashRing{
+  0%{box-shadow:0 0 0 0 rgba(124,255,178,.0)}
+  20%{box-shadow:0 0 0 3px rgba(124,255,178,.65)}
+  100%{box-shadow:0 0 0 0 rgba(124,255,178,.0)}
+}
+
+@media (max-width: 1100px){
+  .techTitleRow{flex-wrap:wrap}
+  .techNameWrap,.techQuickBox{flex:1 1 320px}
+  .overallBlock{flex:1 1 200px}
+}
 .techH2Big{font-size:32px;font-weight:1000;line-height:1.05;letter-spacing:.2px}
 .techH2Big .teamDot{opacity:.7;font-weight:900}
 .techTeamLine{margin-top:6px;font-size:16px;font-weight:900;opacity:.75;letter-spacing:.15px}
@@ -1099,28 +1125,42 @@ ht:1}
 .route-tech .secFocusDial .svcGaugeWrap{width:90px !important;height:90px !important;flex:0 0 148px !important;}
 .route-tech .secFocusDial .svcGauge{--sz:90px !important;width:90px !important;height:90px !important;}
 
-/* === Tech details: Top/Bottom services box (ASR + SOLD) === */
-.techHeaderGrid{display:flex;gap:14px;align-items:stretch}
-@media (max-width: 820px){
-  .techHeaderGrid{flex-direction:column}
-}
-.techTBPanel .phead{height:100%}
-.tbCols{display:grid;grid-template-columns:1fr 1fr;gap:12px;height:100%}
-.tbBox{border:1px solid rgba(255,255,255,.10);border-radius:16px;background:rgba(0,0,0,.28);padding:12px;min-height:100%}
-.tbTopLabel{font-size:14px;font-weight:1100;letter-spacing:.08em;text-transform:uppercase;text-align:center;margin-bottom:10px;opacity:.9}
-.tbSectionTitle{font-size:14px;font-weight:1100;text-align:center;margin:6px 0 8px 0;opacity:.95}
-.tbSectionTitle.mid{margin-top:14px}
-.tbList{margin-top:6px}
-.tbRow{padding:10px 12px;border:1px solid rgba(255,255,255,.10);border-radius:14px;background:rgba(255,255,255,.06);margin-bottom:10px}
-.tbRow:hover{background:rgba(255,255,255,.10)}
-.tbRow .mini{font-size:13px}
-.tbLink{text-decoration:none;color:var(--text)}
-.tbLink:hover{text-decoration:underline}
 
-/* Smooth highlight when jumping to a service card */
-.svcFlash{animation:svcFlash 1.2s ease}
-@keyframes svcFlash{
-  0%{box-shadow:0 0 0 rgba(0,0,0,0)}
-  15%{box-shadow:0 0 0 3px rgba(96,165,250,.35), 0 16px 40px rgba(0,0,0,.35)}
-  100%{box-shadow:0 0 0 rgba(0,0,0,0)}
+/* === Tech detail: Top/Bottom service box (ASR + Sold) === */
+.techHeaderGrid{display:grid;grid-template-columns: 1.2fr 1fr;gap:14px;align-items:stretch}
+@media(max-width:980px){ .techHeaderGrid{grid-template-columns:1fr;} }
+
+.techQuickPanel .phead{height:100%}
+.quickTitleRow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}
+.quickTitle{font-size:14px;font-weight:1000;letter-spacing:.2px;text-transform:uppercase;opacity:.92;text-align:center}
+
+.quickInnerGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){ .quickInnerGrid{grid-template-columns:1fr;} .quickTitleRow{grid-template-columns:1fr;} }
+
+.quickDarkBox{
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:16px;
+  background:rgba(0,0,0,.32);
+  padding:10px;
+  min-height:260px;
+}
+
+.quickSectionTitle{font-size:13px;font-weight:1000;text-align:center;margin:6px 0 10px 0}
+.quickSectionTitle.mid{margin-top:18px}
+
+.techQuickPanel .techRow{
+  padding:8px 10px;
+  border-radius:14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  margin-bottom:8px;
+}
+.techQuickPanel .techRowLeft a{text-decoration:underline}
+.techQuickPanel .mini{font-size:12px;opacity:.9;white-space:nowrap}
+.quickEmpty{text-align:center;opacity:.6;padding:18px 0}
+
+.jumpHi{
+  outline:2px solid rgba(255,255,255,.20);
+  box-shadow:0 0 0 4px rgba(124,92,255,.18);
+  border-radius:18px;
 }
