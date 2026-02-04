@@ -411,24 +411,12 @@
 
 <div id="buildWatermark">BUILD v282_UNIQUE</div>
 
-<script>
-(async function(){
-  try{
-    const res = await fetch('data.json');
-    const txt = await res.text();
-    let el = document.getElementById('data');
-    if(!el){
-      el = document.createElement('script');
-      el.id = 'data';
-      el.type = 'application/json';
-      document.body.appendChild(el);
-    }
-    el.textContent = txt;
-  }catch(e){
-    console.warn('Could not load data.json. If opening via file://, use a local server.', e);
-  }
-})();
-</script>
-<script src="app.js"></script>
+  <script>
+    (async function () {
+      // fetch data.json, fill #data
+      // then dynamically inject app.js
+    })();
+  </script>
 
-</body></html>
+</body>
+</html>
