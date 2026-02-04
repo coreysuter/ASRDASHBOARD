@@ -221,37 +221,6 @@ function safe(s){
   }[ch]));
 }
 
-// ---------- Category anchors (used for in-page jumps from summary lists) ----------
-function _catAnchorId(cat){
-  const base = String(cat||"").toLowerCase().trim();
-  const slug = base
-    .replace(/[^a-z0-9]+/g, "_")
-    .replace(/^_+|_+$/g, "")
-    .slice(0, 60);
-  return "cat_" + (slug || "x");
-}
-function jumpToCat(cat){
-  try{
-    const id = _catAnchorId(cat);
-    const el = document.getElementById(id);
-    if(!el) return;
-
-    // If the service is inside a collapsed section, auto-expand it before scrolling.
-    const panel = el.closest && el.closest('.panel.secCollapsed');
-    if(panel){
-      panel.classList.remove('secCollapsed');
-      const tgl = panel.querySelector('.secToggle');
-      if(tgl) tgl.textContent = '−';
-    }
-
-    el.scrollIntoView({behavior:"smooth", block:"start"});
-    el.classList.remove("flash");
-    // force reflow for repeat clicks
-    void el.offsetWidth;
-    el.classList.add("flash");
-  }catch(e){}
-}
-
 function catLabel(cat){
   const map = (typeof DATA!=="undefined" && (DATA.categoryLabels || DATA.category_labels)) ? (DATA.categoryLabels || DATA.category_labels) : {};
   const raw = (map && map[cat]) ? map[cat] : (cat ?? "");
@@ -805,44 +774,6 @@ const tfOpen = !!UI.techFilters[techId];
   const focusLbl = focus==="sold" ? "SOLD%" : (focus==="goal" ? "GOAL%" : "ASR/RO");
   const focusVal = focus==="sold" ? fmtPct(techSoldPct(t, filterKey)) : (focus==="goal" ? fmtPct(techGoalScore(t)) : fmt1(techAsrPerRo(t, filterKey),1));
 
-  // ----- Top/Bottom services (for the new quick box on tech detail header) -----
-  function buildServiceExtremes(metric){
-    // metric: "asr" | "sold"
-    const rows = CAT_LIST.map(cat=>{
-      const c = t.categories?.[cat] || {};
-      const asr = Number(c.asr ?? 0);
-      const sold = Number(c.sold ?? 0);
-      const req = Number(c.req ?? NaN);     // ratio (0..1) shown as percent
-      const close = Number(c.close ?? NaN); // ratio (0..1) shown as percent
-      return {
-        cat,
-        val: metric==="sold" ? sold : asr,
-        pct: metric==="sold" ? close : req
-      };
-    });
-    const clean = rows.filter(r=>r.cat && Number.isFinite(r.val) && (r.val>=0));
-    const top = clean.slice().sort((a,b)=> (b.val-a.val) || ((b.pct||0)-(a.pct||0)) ).slice(0,3);
-    const bot = clean.slice().sort((a,b)=> (a.val-b.val) || ((a.pct||0)-(b.pct||0)) ).slice(0,3);
-    return {top, bot};
-  }
-
-  function renderSvcLine(r, kind){
-    // kind: "asr" | "sold"
-    if(!r) return "";
-    const label = kind==="sold" ? "Sold" : "ASR";
-    const pctTxt = fmtPct(r.pct);
-    const valTxt = fmtInt(r.val);
-    return `
-      <button class="svcJump" type="button" onclick='jumpToCat(${JSON.stringify(r.cat)})'>
-        <span class="svcName">${safe(catLabel(r.cat))}</span>
-        <span class="svcNums">${label} ${safe(valTxt)} • ${safe(pctTxt)}</span>
-      </button>
-    `;
-  }
-
-  const asrExt = buildServiceExtremes("asr");
-  const soldExt = buildServiceExtremes("sold");
-
   
 const header = `
     <div class="panel techHeaderPanel">
@@ -854,32 +785,6 @@ const header = `
           <div class="techNameWrap">
             <div class="h2 techH2Big">${safe(t.name)}</div>
             <div class="techTeamLine">${safe(team)}</div>
-          </div>
-          <div class="techQuickBox" aria-label="Top and bottom services">
-            <div class="quickGrid">
-              <div class="quickCol">
-                <div class="quickHdr">ASR%</div>
-                <div class="quickLbl">TOP 3 MOST RECOMMENDED</div>
-                <div class="quickList">
-                  ${asrExt.top.map(r=>renderSvcLine(r,"asr")).join("") || `<div class="quickEmpty">—</div>`}
-                </div>
-                <div class="quickLbl" style="margin-top:10px">BOTTOM 3 LEAST RECOMMENDED</div>
-                <div class="quickList">
-                  ${asrExt.bot.map(r=>renderSvcLine(r,"asr")).join("") || `<div class="quickEmpty">—</div>`}
-                </div>
-              </div>
-              <div class="quickCol">
-                <div class="quickHdr">SOLD%</div>
-                <div class="quickLbl">TOP 3 MOST RECOMMENDED</div>
-                <div class="quickList">
-                  ${soldExt.top.map(r=>renderSvcLine(r,"sold")).join("") || `<div class="quickEmpty">—</div>`}
-                </div>
-                <div class="quickLbl" style="margin-top:10px">BOTTOM 3 LEAST RECOMMENDED</div>
-                <div class="quickList">
-                  ${soldExt.bot.map(r=>renderSvcLine(r,"sold")).join("") || `<div class="quickEmpty">—</div>`}
-                </div>
-              </div>
-            </div>
           </div>
           <div class="overallBlock">
             <div class="big">${overall.rank ?? "—"}/${overall.total ?? "—"}</div>
@@ -1050,7 +955,7 @@ const soldBlock = `
     `;
 
 return `
-      <div class="catCard" id="${_catAnchorId(cat)}">
+      <div class="catCard">
         <div class="catHeader">
           <div class="svcGaugeWrap" style="--sz:72px">${Number.isFinite(hdrPct)? svcGauge(hdrPct, (focus==="sold"?"Sold%":(focus==="goal"?"Goal%":"ASR%"))) : ""}</div>
 <div>
